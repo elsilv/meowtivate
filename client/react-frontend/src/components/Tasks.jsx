@@ -13,9 +13,12 @@ const Tasks = () => {
   }, []);
 
   const fetchTasks = () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/tasks`)
+    const user_id = localStorage.getItem('user_id');
+    axios.get(`${process.env.REACT_APP_API_URL}/api/tasks`, {
+      params: { user_id }
+    })
       .then(response => {
-        setTasks(response.data); 
+        setTasks(response.data);
       })
       .catch(error => {
         console.error('There was an error fetching the tasks!', error);
@@ -32,7 +35,9 @@ const Tasks = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    axios.post(`${process.env.REACT_APP_API_URL}/api/tasks`, newTask)
+    const user_id = localStorage.getItem('user_id');
+
+    axios.post(`${process.env.REACT_APP_API_URL}/api/tasks`, { ...newTask, user_id })
       .then(() => {
         fetchTasks();
         setNewTask({ name: '', status: '0', value: '' });

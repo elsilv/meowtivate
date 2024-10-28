@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
 
 const GoogleLogin = () => {
+
   useEffect(() => {
     const existingScript = document.getElementById('google-login-script');
 
@@ -29,16 +31,26 @@ const GoogleLogin = () => {
     const token = response.credential;
     console.log("Encoded JWT ID token: " + token);
   
+    const userInfo = jwtDecode(token);
+
     fetch(`${process.env.REACT_APP_API_URL}/api/google-login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ token: token }),
+      body: JSON.stringify({
+        token: token,
+        userInfo: {
+          email: userInfo.email,
+          name: userInfo.name,
+        }
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
+          const { id } = data.user;
+          localStorage.setItem('user_id', id);
           localStorage.setItem('google_token', token);
           localStorage.setItem('isLoggedIn', 'true');
           window.location.href = '/api/tasks';

@@ -3,9 +3,9 @@ const db = require('../database/database');
 const router = express.Router();
 
 router.post('/', (req, res) => {
-  const { name, status, value } = req.body;
-  const sql = 'INSERT INTO tasks (name, status, value) VALUES (?, ?, ?)';
-  db.run(sql, [name, status, value], function (err) {
+  const { user_id, name, status, value } = req.body;
+  const sql = 'INSERT INTO tasks (user_id, name, status, value) VALUES (?, ?, ?, ?)';
+  db.run(sql, [user_id, name, status, value], function (err) {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -14,8 +14,9 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  const sql = 'SELECT * FROM tasks';
-  db.all(sql, [], (err, rows) => {
+  const { user_id } = req.query;
+  const sql = 'SELECT * FROM tasks WHERE user_id = ?';
+  db.all(sql, [user_id], (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
