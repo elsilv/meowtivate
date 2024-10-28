@@ -23,6 +23,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('google_token');
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('user_info');
+    localStorage.removeItem('user_id');
     setIsLoggedIn(false);
     setUser(null);
     window.location.href = '/';
