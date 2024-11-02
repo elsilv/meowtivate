@@ -1,6 +1,16 @@
+:root {
+  --main-bg-color: #ffffff;
+  --text-color: #0c0b0a;
+  --primary-color: #7d6167;
+  --primary-hover-color: #5c4348;
+  --button-padding: 10px 15px;
+  --box-shadow-color: rgba(0, 0, 0, 0.2);
+  --button-hover-shadow-color: rgba(0, 0, 0, 0.3);
+}
+
 body {
   margin: 0;
-  padding: 0;;
+  padding: 0;
   font-family: "Afacad Flux", sans-serif;
 }
 
@@ -15,16 +25,16 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: var(--main-bg-color);
   padding: 10px;
-  color: #0c0b0a;
+  color: var(--text-color);
 }
 
-.navbar-brand a{
+.navbar-brand a {
   font-size: 24px;
   font-weight: bold;
-  color: #0c0b0a;
-  text-decoration: none; 
+  color: var(--text-color);
+  text-decoration: none;
 }
 
 .navbar-links {
@@ -38,10 +48,10 @@ body {
 }
 
 .navbar-links a {
-  color: #0c0b0a;
+  color: var(--text-color);
   text-decoration: none;
   font-size: 18px;
-  transition: text-decoration 0.2s ease; 
+  transition: text-decoration 0.2s ease;
 }
 
 .navbar-links a:hover {
@@ -50,13 +60,13 @@ body {
 
 .navbar-links button {
   font-family: "Afacad Flux", sans-serif;
-  color: #0c0b0a;
+  color: var(--text-color);
   border: none;
   background-color: transparent;
   text-decoration: none;
   font-size: 18px;
   transition: text-decoration 0.2s ease;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .navbar-links button:hover {
@@ -64,19 +74,20 @@ body {
 }
 
 .btn {
-  background-color: #7d6167;
-  padding: 10px 15px;
+  background-color: var(--primary-color);
+  padding: var(--button-padding);
   border-radius: 5px;
   color: white;
   text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 8px var(--box-shadow-color);
 }
 
 .btn:hover {
-  background-color: #5c4348; 
+  background-color: var(--primary-hover-color);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px var(--button-hover-shadow-color);
 }
-
-
 /* Hero Section Styles */
 .hero {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./images/catheader.jpg');
@@ -105,8 +116,8 @@ p {
 
 /* Footer Styles */
 .footer {
-  background-color: white;
-  color: #0c0b0a;
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
   text-align: center;
   position: relative;
 }
@@ -140,16 +151,15 @@ p {
   cursor: pointer;
 }
 
-.task-content input, select {
-  color: #0c0b0a;
+.task-content input,
+select {
+  color: var(--text-color);
   border-radius: .4rem;
   box-shadow: 0 .4rem .4rem #ddd;
-
   padding: 10px;
   text-align: left;
   border: 1px solid #ddd;
-  background-color: white;
-
+  background-color: var(--main-bg-color);
   width: 100%;
   box-sizing: border-box;
 }
@@ -190,10 +200,9 @@ table {
   border: 5px solid transparent;
   border-radius: .8rem;
   margin: 20px 0;
-  background-color: #7d6167;
+  background-color: var(--primary-color);
   padding: 10px;
   box-sizing: border-box;
-  
   backdrop-filter: blur(7px);
   box-shadow: 0 .4rem .8rem #0005;
   overflow-x: auto;
@@ -203,7 +212,7 @@ th, td {
   padding: 12px;
   text-align: left;
   border: 1px solid #ddd;
-  background-color: white;
+  background-color: var(--main-bg-color);
 }
 
 th {
@@ -256,13 +265,13 @@ tr:nth-child(even) {
 
 @keyframes shine {
   0% {
-      background-position: 0% 50%;
+    background-position: 0% 50%;
   }
   50% {
-      background-position: 100% 50%;
+    background-position: 100% 50%;
   }
   100% {
-      background-position: 0% 50%;
+    background-position: 0% 50%;
   }
 }
 
@@ -280,7 +289,7 @@ tr:nth-child(even) {
   text-align: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin: 20px;
-  background-color: white;
+  background-color: var(--main-bg-color);
 }
 
 .product-card:hover {
@@ -314,11 +323,11 @@ tr:nth-child(even) {
 }
 
 .add-to-cart-btn {
-  background-color:  #7d6167;
+  background-color: var(--primary-color);
   color: white;
   font-weight: 600;
   border: none;
-  padding: 10px 15px;
+  padding: var(--button-padding);
   cursor: pointer;
   border-radius: 10px;
   margin-top: 10px;
@@ -328,7 +337,7 @@ tr:nth-child(even) {
 }
 
 .add-to-cart-btn:hover {
-  background-color: #5c4348;
+  background-color: var(--primary-hover-color);
 }
 
 
@@ -347,7 +356,7 @@ tr:nth-child(even) {
 }
 
 .signup-card {
-  background-color: white;
+  background-color: var(--main-bg-color);
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 30px;
@@ -395,11 +404,11 @@ input {
 }
 
 .signup-btn {
-  background-color:  #7d6167;
+  background-color: var(--primary-color);
   color: white;
   font-weight: 600;
   border: none;
-  padding: 10px 15px;
+  padding: var(--button-padding);
   cursor: pointer;
   border-radius: 10px;
   margin-top: 10px;
@@ -409,7 +418,7 @@ input {
 }
 
 .signup-btn:hover {
-  background-color: #5c4348;
+  background-color: var(--primary-hover-color);
 }
 
 .tooltip {
@@ -421,8 +430,8 @@ input {
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 120px;
-  background-color: white;
-  color: #0c0b0a;
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
   text-align: center;
   border-radius: 5px;
   padding: 5px;
@@ -433,11 +442,10 @@ input {
   margin-left: -60px;
   opacity: 0;
   transition: opacity 0.3s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px var(--box-shadow-color);
 }
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }
-
