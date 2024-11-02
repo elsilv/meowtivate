@@ -133,14 +133,16 @@ const Tasks = () => {
             <tr key={task.id}>
               <td data-label="Task">{task.name}</td>
               <td data-label="Status">{getStatusText(task.status)}</td>
-              <td data-label="Value">{task.value} <FaHeart size={12} color="#FFA9A3" /></td>
+              <td data-label="Value">{task.value} <FaHeart size={12} color="#FAD8D6" /></td>
               <td data-label="More Info">Details</td>
               <td data-label="Remove task">
-                <button className='task-change-status-btn' onClick={() => handleRemoveTask(task.id)}>
+                <button className='task-change-status-btn tooltip'  onClick={() => handleRemoveTask(task.id)}>
                   <FiTrash2 />
+                  <span className="tooltiptext">Remove task</span>
                 </button>
-                <button className='task-change-status-btn' onClick={() => handleMarkAsDone(task.id)}>
+                <button  className='task-change-status-btn tooltip' onClick={() => handleMarkAsDone(task.id)}>
                   <FiCheck />
+                  <span className="tooltiptext">Mark task as done</span>
                 </button>
               </td>
             </tr>

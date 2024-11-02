@@ -308,7 +308,7 @@ tr:nth-child(even) {
 }
 
 .product-price {
-  font-size: 20x;
+  font-size: 20px;
   color: #333;
   font-weight: bold;
 }
@@ -411,3 +411,33 @@ input {
 .signup-btn:hover {
   background-color: #5c4348;
 }
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: white;
+  color: #0c0b0a;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
