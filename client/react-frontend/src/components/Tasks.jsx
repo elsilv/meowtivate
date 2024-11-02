@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/index.css';
-import { FiTrash2, FiPlus } from "react-icons/fi";
+import { FiTrash2, FiPlus, FiCheck } from "react-icons/fi";
 import { FaHeart } from 'react-icons/fa';
 
 const Tasks = () => {
@@ -54,6 +54,18 @@ const Tasks = () => {
       })
       .catch(error => {
         console.error('There was an error removing the task!', error);
+      });
+  };
+
+  const handleMarkAsDone = (taskId) => {
+    const user_id = localStorage.getItem('user_id');
+
+    axios.post(`${process.env.REACT_APP_API_URL}/api/tasks/${taskId}/mark-done`, { user_id })
+      .then(() => {
+        fetchTasks();
+      })
+      .catch(error => {
+        console.error('Error marking task as done:', error);
       });
   };
 
@@ -126,6 +138,9 @@ const Tasks = () => {
               <td data-label="Remove task">
                 <button className='task-change-status-btn' onClick={() => handleRemoveTask(task.id)}>
                   <FiTrash2 />
+                </button>
+                <button className='task-change-status-btn' onClick={() => handleMarkAsDone(task.id)}>
+                  <FiCheck />
                 </button>
               </td>
             </tr>

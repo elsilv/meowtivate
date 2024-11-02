@@ -38,4 +38,32 @@ router.delete('/:id', (req, res) => {
   });
 });
 
+router.post('/:id/mark-done', (req, res) => {
+  const { id } = req.params;
+  const { user_id } = req.body;
+
+  const getTaskSQL = 'SELECT value FROM tasks WHERE id = ? AND user_id = ? AND status != ?';
+  const updateTaskSQL = 'UPDATE tasks SET status = ? WHERE id = ? AND user_id = ?';
+  const updateUserBalanceSQL = 'UPDATE users SET balance = balance + ? WHERE id = ?';
+
+  db.get(getTaskSQL, [id, user_id, 2], (err, task) => {
+    if (err || !task) {
+      return res.status(400).json({ success: false, message: 'Task not found or already completed.' });
+    }
+
+    db.run(updateTaskSQL, [2, id, user_id], (err) => {
+      if (err) {
+        return res.status(500).json({ success: false, message: 'Failed to update task.' });
+      }
+
+      db.run(updateUserBalanceSQL, [task.value, user_id], (err) => {
+        if (err) {
+          return res.status(500).json({ success: false, message: 'Failed to update balance.' });
+        }
+        res.json({ success: true, message: 'Task marked as done and balance updated.' });
+      });
+    });
+  });
+});
+
 module.exports = router;
