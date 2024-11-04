@@ -38,10 +38,12 @@ db.serialize(() => {
   db.run(`
     CREATE TABLE IF NOT EXISTS rewards (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER,
       name TEXT NOT NULL,
       description TEXT,
       value INTEGER,
-      image TEXT
+      image TEXT,
+      FOREIGN KEY (user_id) REFERENCES users(id)
     )
   `);
 
