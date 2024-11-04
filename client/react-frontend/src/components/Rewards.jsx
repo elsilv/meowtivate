@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { FiPlus  } from "react-icons/fi";
+import { FiPlus } from "react-icons/fi";
+import { AiOutlinePicture, AiOutlineTag, AiOutlineEdit } from "react-icons/ai";
 import { FaHeart } from 'react-icons/fa';
 import ProductCard from './ProductCard';
 
@@ -8,6 +9,7 @@ const Rewards = () => {
   const [rewards, setRewards] = useState([]);
   const [newReward, setNewReward] = useState({ name: '', description: '', image: '', value: '0' });
   const [cart, setCart] = useState([]);
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
   const addToCart = (reward) => {
     setCart([...cart, reward]);
@@ -48,6 +50,9 @@ const Rewards = () => {
       });
   };
 
+  const toggleFormVisibility = () => {
+    setIsFormVisible(!isFormVisible);
+  };
 
   return (
     <div className='task-content'>
@@ -58,48 +63,65 @@ const Rewards = () => {
         ))}
       </div>
 
-      <div className="form-container">
-        <form onSubmit={handleFormSubmit}>
-          <div className="form-row">
-            <input
-              className="add-task-input-field"
-              type="text"
-              name="name"
-              placeholder="Reward name"
-              value={newReward.name}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              className="add-task-input-field"
-              type="text"
-              name="description"
-              placeholder="Description"
-              value={newReward.description}
-              onChange={handleInputChange}
-            />
-            <input
-              className="add-task-input-field"
-              type="text"
-              name="image"
-              placeholder="Image"
-              value={newReward.image}
-              onChange={handleInputChange}
-            />
-            <input
-              className="add-task-input-field"
-              type="number"
-              name="value"
-              placeholder="Price"
-              value={newReward.value}
-              onChange={handleInputChange}
-            />  <FaHeart size={12} color="#FAD8D6" />
-            <button type="submit" className="task-change-status-btn">
-              <FiPlus />
-            </button>
-          </div>
-        </form>
-      </div>
+      <button onClick={toggleFormVisibility} className="show-reward-form-btn">
+        {isFormVisible ? "Cancel" : "Add New Reward"}
+      </button>
+
+      {isFormVisible && (
+        <div className="reward-form-container">
+          <form onSubmit={handleFormSubmit} className="reward-form">
+            <div className="form-row">
+              <label className="input-group">
+                <AiOutlineTag className="input-icon" />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Reward name"
+                  value={newReward.name}
+                  onChange={handleInputChange}
+                  required
+                />
+              </label>
+
+              <label className="input-group">
+                <AiOutlineEdit className="input-icon" />
+                <textarea
+                  name="description"
+                  placeholder="Description"
+                  value={newReward.description}
+                  onChange={handleInputChange}
+                />
+              </label>
+
+              <label className="input-group">
+                <AiOutlinePicture className="input-icon" />
+                <input
+                  type="text"
+                  name="image"
+                  placeholder="Image URL"
+                  value={newReward.image}
+                  onChange={handleInputChange}
+                />
+              </label>
+
+              <label className="input-group">
+                <FaHeart size={12} color="#FAD8D6"className="input-icon" />
+                <input
+                  type="number"
+                  name="value"
+                  placeholder="Price"
+                  value={newReward.value}
+                  onChange={handleInputChange}
+                  min="0"
+                />
+              </label>
+              <button type="submit" className="add-reward-btn">
+                <FiPlus /> Add reward
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
 
       <div className="cart">
         <h2>Shopping Cart</h2>
