@@ -10,10 +10,25 @@ const Rewards = () => {
   const [newReward, setNewReward] = useState({ name: '', description: '', image: '', value: '0' });
   const [cart, setCart] = useState([]);
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const addToCart = (reward) => {
-    setCart([...cart, reward]);
+    setSelectedProduct(reward);
+    setIsModalVisible(true);
   };
+
+  const confirmPurchase = () => {
+    setCart([...cart, selectedProduct]);
+    setIsModalVisible(false);
+    setSelectedProduct(null);
+  };
+
+  const cancelPurchase = () => {
+    setIsModalVisible(false);
+    setSelectedProduct(null);
+  };
+
   useEffect(() => {
     fetchRewards();
   }, []);
@@ -59,7 +74,7 @@ const Rewards = () => {
       <h1>Palkintokauppa</h1>
       <div className="product-grid">
         {rewards.map(reward => (
-          <ProductCard key={reward.id} product={reward} addToCart={addToCart}/>
+          <ProductCard key={reward.id} product={reward} addToCart={addToCart} />
         ))}
       </div>
 
@@ -105,7 +120,7 @@ const Rewards = () => {
               </label>
 
               <label className="input-group">
-                <FaHeart size={12} color="#FAD8D6"className="input-icon" />
+                <FaHeart size={12} color="#FAD8D6" className="input-icon" />
                 <input
                   type="number"
                   name="value"
@@ -127,10 +142,20 @@ const Rewards = () => {
         <h2>Shopping Cart</h2>
         {cart.map((item, index) => (
           <div key={index}>
-            <p>{item.title} - {item.value}</p>
+            <p>{item.name} - {item.value} <FaHeart size={12} color="#FAD8D6" /></p>
           </div>
         ))}
       </div>
+
+      {isModalVisible && (
+        <div className="modal">
+          <div className="modal-content">
+            <p>Are you sure you want to buy {selectedProduct?.name} for {selectedProduct?.value} <FaHeart size={12} color="#FAD8D6" />?</p>
+            <button className="btn" onClick={confirmPurchase}>Yes</button>
+            <button className="btn" onClick={cancelPurchase}>No</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

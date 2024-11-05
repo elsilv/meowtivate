@@ -15,7 +15,7 @@ const ProductCard = ({ product, addToCart }) => {
           <p className="product-description">{product.description}</p>
           <p className="product-price">{product.value} <FaHeart size={12} color="#FFA9A3" /></p>   
         </div>
-        <button className="add-to-cart-btn" onClick={() => addToCart(product)}>Add to Cart</button>
+        <button className="add-to-cart-btn" onClick={() => addToCart(product)}>Buy</button>
       </div>
     );
   };

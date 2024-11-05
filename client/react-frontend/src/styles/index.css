@@ -340,6 +340,7 @@ tr:nth-child(even) {
   background-color: var(--primary-hover-color);
 }
 
+
 .product-grid {
   display: flex;
   justify-content: center;
@@ -427,6 +428,25 @@ tr:nth-child(even) {
 .show-reward-form-btn:hover {
   background-color: var(--primary-hover-color);
   box-shadow: 0 8px 16px var(--button-hover-shadow-color);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
 }
 
 /* Signin / Signup page */
