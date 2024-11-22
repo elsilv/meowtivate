@@ -1,21 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/index.css';
 import { FiTrash2, FiPlus, FiCheck } from "react-icons/fi";
 import { FaHeart } from 'react-icons/fa';
+import {AuthContext} from "../context/AuthContext";
 
 const Tasks = () => {
+  const { userId } = useContext(AuthContext);
+
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState({ name: '', status: '0', value: '' });
 
   useEffect(() => {
     fetchTasks();
-  }, []);
+  }, [userId]);
 
   const fetchTasks = () => {
-    const user_id = localStorage.getItem('user_id');
+    if (!userId) return;
+
     axios.get(`${process.env.REACT_APP_API_URL}/api/tasks`, {
-      params: { user_id }
+      params: { user_id: userId }
     })
       .then(response => {
         setTasks(response.data);
@@ -35,9 +39,8 @@ const Tasks = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const user_id = localStorage.getItem('user_id');
 
-    axios.post(`${process.env.REACT_APP_API_URL}/api/tasks`, { ...newTask, user_id })
+    axios.post(`${process.env.REACT_APP_API_URL}/api/tasks`, { ...newTask, user_id: userId })
       .then(() => {
         fetchTasks();
         setNewTask({ name: '', status: '0', value: '' });
@@ -58,9 +61,7 @@ const Tasks = () => {
   };
 
   const handleMarkAsDone = (taskId) => {
-    const user_id = localStorage.getItem('user_id');
-
-    axios.post(`${process.env.REACT_APP_API_URL}/api/tasks/${taskId}/mark-done`, { user_id })
+    axios.post(`${process.env.REACT_APP_API_URL}/api/tasks/${taskId}/mark-done`, { user_id: userId })
       .then(() => {
         fetchTasks();
       })
@@ -82,9 +83,13 @@ const Tasks = () => {
     }
   };
 
+  if (!userId) {
+    return <div>Something went wrong!</div>;
+  }
+
   return (
     <div className='task-content'>
-      <h1>Tehtävälista</h1>
+      <h1>Tasks</h1>
     
       <div className="form-container">
         <form onSubmit={handleFormSubmit}>
