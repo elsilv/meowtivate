@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { FiPlus } from "react-icons/fi";
 import { AiOutlinePicture, AiOutlineTag, AiOutlineEdit } from "react-icons/ai";
 import { FaHeart } from 'react-icons/fa';
+import { AuthContext } from "../context/AuthContext";
 import ProductCard from './ProductCard';
 
 const Rewards = () => {
+  const { userId } = useContext(AuthContext);
+
   const [rewards, setRewards] = useState([]);
   const [newReward, setNewReward] = useState({ name: '', description: '', image: '', value: '0' });
   const [cart, setCart] = useState([]);
@@ -53,9 +56,8 @@ const Rewards = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const user_id = localStorage.getItem('user_id');
 
-    axios.post(`${process.env.REACT_APP_API_URL}/api/rewards`, { ...newReward, user_id })
+    axios.post(`${process.env.REACT_APP_API_URL}/api/rewards`, { ...newReward, user_id: userId })
       .then(() => {
         fetchRewards();
         setNewReward({ name: '', description: '', image: '', value: '0' });
