@@ -45,4 +45,15 @@ router.get('/', (req, res) => {
   });
 });
 
+router.get('/:id/balance', (req, res) => {
+  const { id } = req.params;
+  const sql = 'SELECT balance FROM users WHERE id = ?';
+  db.all(sql, id, (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows);
+  });
+});
+
 module.exports = router;

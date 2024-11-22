@@ -5,13 +5,17 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('google_token');
     const loggedInStatus = localStorage.getItem('isLoggedIn');
+    const storedUserId = localStorage.getItem('user_id');
 
     if (token && loggedInStatus === 'true') {
       setIsLoggedIn(true);
+      setUserId(storedUserId);
+
       const storedUser = localStorage.getItem('user_info');
       if (storedUser) {
         setUser(JSON.parse(storedUser));
@@ -30,7 +34,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, user, setUser, signOut }}>
+    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, user, setUser, userId, signOut }}>
       {children}
     </AuthContext.Provider>
   );

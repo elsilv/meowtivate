@@ -14,7 +14,14 @@ const Navbar = () => {
         <li><Link to="/api/tasks">Tasks</Link></li>
         <li><Link to="/api/rewards">Reward shop</Link></li>
 
-        {isLoggedIn ? (<li><button onClick={signOut}>Sign out</button></li>) : (<li><Link to="/signin">Sign in</Link></li>)}
+        {isLoggedIn ? (
+            <>
+                <li><Link to="/myrewards">My rewards</Link></li>
+                <li><button onClick={signOut}>Sign out</button></li>
+            </>
+        ) : (
+            <li><Link to="/signin">Sign in</Link></li>
+        )}
       </ul>
     </nav>
   );
