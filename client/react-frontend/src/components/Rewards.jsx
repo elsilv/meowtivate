@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FiPlus } from "react-icons/fi";
 import { AiOutlinePicture, AiOutlineTag, AiOutlineEdit } from "react-icons/ai";
@@ -7,11 +7,10 @@ import ProductCard from './ProductCard';
 import { useMeowtivate } from '../context/MeowtivateContext';
 
 const Rewards = () => {
-  const { state: { userId } } = useMeowtivate();
+  const { state: { userId }, handleBuyReward } = useMeowtivate();
 
   const [rewards, setRewards] = useState([]);
   const [newReward, setNewReward] = useState({ name: '', description: '', image: '', value: '0' });
-  const [cart, setCart] = useState([]);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -22,7 +21,7 @@ const Rewards = () => {
   };
 
   const confirmPurchase = () => {
-    setCart([...cart, selectedProduct]);
+    handleBuyReward(selectedProduct);
     setIsModalVisible(false);
     setSelectedProduct(null);
   };
@@ -139,15 +138,6 @@ const Rewards = () => {
           </form>
         </div>
       )}
-
-      <div className="cart">
-        <h2>Shopping Cart</h2>
-        {cart.map((item, index) => (
-          <div key={index}>
-            <p>{item.name} - {item.value} <FaHeart size={12} color="#FAD8D6" /></p>
-          </div>
-        ))}
-      </div>
 
       {isModalVisible && (
         <div className="modal">

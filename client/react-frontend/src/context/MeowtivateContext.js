@@ -7,6 +7,7 @@ const initialState = {
   userId: null,
   balance: 0,
   tasks: [],
+  rewards: [],
 };
 
 function meowtivateReducer(state, action) {
@@ -31,6 +32,11 @@ function meowtivateReducer(state, action) {
           task.id === action.payload ? { ...task, done: true } : task
         ),
         balance: state.balance + action.rewardValue,
+      };
+    case 'UPDATE_BALANCE':
+      return {
+        ...state,
+        balance: action.payload,
       };
     default:
       return state;
@@ -81,8 +87,27 @@ export function MeowtivateProvider({ children }) {
       });
   };
 
+  const handleBuyReward = (reward) => {
+    if (!state.userId) {
+      console.log('User not logged in');
+      return;
+    }
+
+    axios.post(`${process.env.REACT_APP_API_URL}/api/purchases/buy`, {
+      userId: state.userId,
+      rewardId: reward.id,
+    })
+      .then(response => {
+        console.log('Purchase successful:', response.data);
+        dispatch({ type: 'UPDATE_BALANCE', payload: response.data.newBalance });
+      })
+      .catch(error => {
+        console.error('Error purchasing reward:', error.response?.data?.error || error.message);
+      });
+  };
+
   return (
-    <MeowtivateContext.Provider value={{ state, dispatch, signOut, fetchTasks }}>
+    <MeowtivateContext.Provider value={{ state, dispatch, signOut, fetchTasks, handleBuyReward }}>
       {children}
     </MeowtivateContext.Provider>
   );

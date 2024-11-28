@@ -1,23 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useMeowtivate } from '../context/MeowtivateContext';
 
 const useBalance = () => {
-  const { state: { userId } } = useMeowtivate();
+  const { state: { userId }, dispatch } = useMeowtivate();
   const [balance, setBalance] = useState(0);
 
   useEffect(() => {
-    const user_id = userId ? userId : null;
-    if (!user_id) {
-      console.error('User ID not found in local storage');
+    if (!userId) {
+      console.error('User ID is not available.');
       return;
     }
 
     axios
-      .get(`${process.env.REACT_APP_API_URL}/api/google-login/${user_id}/balance`)
+      .get(`${process.env.REACT_APP_API_URL}/api/google-login/${userId}/balance`)
       .then(response => {
         if (response.data.length > 0) {
-          setBalance(response.data[0].balance);
+          const fetchedBalance = response.data[0].balance;
+          setBalance(fetchedBalance);
+          dispatch({
+            type: 'UPDATE_BALANCE',
+            payload: fetchedBalance,
+          });
         } else {
           console.error('No data returned from API');
           setBalance(0);
@@ -26,7 +30,7 @@ const useBalance = () => {
       .catch(error => {
         console.error('Error fetching the balance:', error);
       });
-  }, [userId]);
+  }, [userId, dispatch]);
 
   return balance;
 };
