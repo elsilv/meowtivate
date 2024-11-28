@@ -1,10 +1,12 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import axios from 'axios';
 
 const initialState = {
   isLoggedIn: false,
   user: null,
   userId: null,
   balance: 0,
+  tasks: [],
 };
 
 function meowtivateReducer(state, action) {
@@ -18,12 +20,23 @@ function meowtivateReducer(state, action) {
       };
     case 'SIGN_OUT':
       return { ...initialState };
+    case 'ADD_TASK':
+      return { ...state, tasks: [...state.tasks, action.payload] };
+    case 'SET_TASKS':
+      return { ...state, tasks: action.payload };
+    case 'MARK_TASK_DONE':
+      return {
+        ...state,
+        tasks: state.tasks.map(task =>
+          task.id === action.payload ? { ...task, done: true } : task
+        ),
+        balance: state.balance + action.rewardValue,
+      };
     default:
       return state;
   }
 }
 
-// Context ja Provider
 const MeowtivateContext = createContext();
 
 export function MeowtivateProvider({ children }) {
@@ -52,13 +65,24 @@ export function MeowtivateProvider({ children }) {
     localStorage.removeItem('user_info');
     localStorage.removeItem('user_id');
 
-    dispatch({ type: 'LOGOUT' });
+    dispatch({ type: 'SIGN_OUT' });
     window.location.href = '/';
   };
 
+  const fetchTasks = (userId) => {
+    if (!userId) return;
+
+    axios.get(`${process.env.REACT_APP_API_URL}/api/tasks`, { params: { user_id: userId } })
+      .then(response => {
+        dispatch({ type: 'SET_TASKS', payload: response.data });
+      })
+      .catch(error => {
+        console.error('There was an error fetching the tasks!', error);
+      });
+  };
 
   return (
-    <MeowtivateContext.Provider value={{ state, dispatch, signOut }}>
+    <MeowtivateContext.Provider value={{ state, dispatch, signOut, fetchTasks }}>
       {children}
     </MeowtivateContext.Provider>
   );

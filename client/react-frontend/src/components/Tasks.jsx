@@ -7,28 +7,12 @@ import { useMeowtivate } from '../context/MeowtivateContext';
 
 
 const Tasks = () => {
-  const { state: { userId } } = useMeowtivate();
-
-  const [tasks, setTasks] = useState([]);
+  const { state: { userId, tasks }, dispatch, fetchTasks } = useMeowtivate();
   const [newTask, setNewTask] = useState({ name: '', status: '0', value: '' });
 
   useEffect(() => {
-    fetchTasks();
-  }, [userId]);
-
-  const fetchTasks = () => {
-    if (!userId) return;
-
-    axios.get(`${process.env.REACT_APP_API_URL}/api/tasks`, {
-      params: { user_id: userId }
-    })
-      .then(response => {
-        setTasks(response.data);
-      })
-      .catch(error => {
-        console.error('There was an error fetching the tasks!', error);
-      });
-  };
+    fetchTasks(userId);
+  }, [userId, fetchTasks]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -42,8 +26,11 @@ const Tasks = () => {
     e.preventDefault();
 
     axios.post(`${process.env.REACT_APP_API_URL}/api/tasks`, { ...newTask, user_id: userId })
-      .then(() => {
-        fetchTasks();
+      .then((response) => {
+        dispatch({
+          type: 'ADD_TASK',
+          payload: response.data,
+        });
         setNewTask({ name: '', status: '0', value: '' });
       })
       .catch(error => {
@@ -54,17 +41,24 @@ const Tasks = () => {
   const handleRemoveTask = (taskId) => {
     axios.delete(`${process.env.REACT_APP_API_URL}/api/tasks/${taskId}`)
       .then(() => {
-        fetchTasks();
+        dispatch({
+          type: 'SET_TASKS',
+          payload: tasks.filter(task => task.id !== taskId),
+        });
       })
       .catch(error => {
         console.error('There was an error removing the task!', error);
       });
   };
 
-  const handleMarkAsDone = (taskId) => {
+  const handleMarkAsDone = (taskId, rewardValue) => {
     axios.post(`${process.env.REACT_APP_API_URL}/api/tasks/${taskId}/mark-done`, { user_id: userId })
       .then(() => {
-        fetchTasks();
+        dispatch({
+          type: 'MARK_TASK_DONE',
+          payload: taskId,
+          rewardValue: rewardValue,
+        });
       })
       .catch(error => {
         console.error('Error marking task as done:', error);
