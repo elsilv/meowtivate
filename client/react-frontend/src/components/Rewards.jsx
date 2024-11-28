@@ -3,11 +3,11 @@ import axios from 'axios';
 import { FiPlus } from "react-icons/fi";
 import { AiOutlinePicture, AiOutlineTag, AiOutlineEdit } from "react-icons/ai";
 import { FaHeart } from 'react-icons/fa';
-import { AuthContext } from "../context/AuthContext";
 import ProductCard from './ProductCard';
+import { useMeowtivate } from '../context/MeowtivateContext';
 
 const Rewards = () => {
-  const { userId } = useContext(AuthContext);
+  const { state: { userId } } = useMeowtivate();
 
   const [rewards, setRewards] = useState([]);
   const [newReward, setNewReward] = useState({ name: '', description: '', image: '', value: '0' });

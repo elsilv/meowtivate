@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/index.css';
 
-import { AuthProvider } from './context/AuthContext';
+import { MeowtivateProvider } from './context/MeowtivateContext';
 
 import TaskPage from './pages/TaskPage';
 import RewardPage from './pages/RewardShopPage';
@@ -16,16 +16,16 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-      <AuthProvider>
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/api/tasks" element={<TaskPage />} />
-        <Route path="/api/rewards" element={<RewardPage />} />
-        <Route path="/signin" element={<SignInPage />} />
-        <Route path="/myrewards" element={<MyRewardsPage />} />
-      </Routes>
-    </Router>
-    </AuthProvider>
+   <MeowtivateProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/api/tasks" element={<TaskPage />} />
+          <Route path="/api/rewards" element={<RewardPage />} />
+          <Route path="/signin" element={<SignInPage />} />
+          <Route path="/myrewards" element={<MyRewardsPage />} />
+        </Routes>
+      </Router>
+    </MeowtivateProvider>
   </React.StrictMode>
 );

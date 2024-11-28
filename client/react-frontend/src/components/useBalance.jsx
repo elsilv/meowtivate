@@ -1,9 +1,9 @@
-import { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { AuthContext } from '../context/AuthContext';
+import { useMeowtivate } from '../context/MeowtivateContext';
 
 const useBalance = () => {
-  const { userId } = useContext(AuthContext);
+  const { state: { userId } } = useMeowtivate();
   const [balance, setBalance] = useState(0);
 
   useEffect(() => {

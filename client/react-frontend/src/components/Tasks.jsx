@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/index.css';
-import { FiTrash2, FiPlus, FiCheck } from "react-icons/fi";
+import { FiTrash2, FiPlus, FiCheck } from 'react-icons/fi';
 import { FaHeart } from 'react-icons/fa';
-import {AuthContext} from "../context/AuthContext";
+import { useMeowtivate } from '../context/MeowtivateContext';
+
 
 const Tasks = () => {
-  const { userId } = useContext(AuthContext);
+  const { state: { userId } } = useMeowtivate();
 
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState({ name: '', status: '0', value: '' });

@@ -1,11 +1,11 @@
-import { React, useContext } from 'react';
+import { React } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/index.css';
 
-import { AuthContext } from '../context/AuthContext';
+import { useMeowtivate } from '../context/MeowtivateContext';
 
 const Navbar = () => {
-  const { isLoggedIn, signOut } = useContext(AuthContext); 
+  const { state: { isLoggedIn }, signOut } = useMeowtivate();
 
   return (
     <nav className="navbar">
