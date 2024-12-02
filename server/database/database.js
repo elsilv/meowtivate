@@ -52,6 +52,7 @@ db.serialize(() => {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       user_id INTEGER,
       reward_id INTEGER,
+      is_used INTEGER DEFAULT 0,
       purchased_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY (user_id) REFERENCES users(id),
       FOREIGN KEY (reward_id) REFERENCES rewards(id)

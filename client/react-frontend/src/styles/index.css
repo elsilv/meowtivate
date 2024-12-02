@@ -551,3 +551,62 @@ input {
   visibility: visible;
   opacity: 1;
 }
+
+.owned-product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 220px;
+  padding: 100px;
+  background-color: white;
+  border-radius: 8px;
+  margin: 10px;
+  transition: transform 0.3s ease;
+}
+
+.owned-product-card:hover {
+  box-shadow: 0 2px 8px rgba(125, 97, 103, 0.8);
+}
+
+.owned-product-card .used-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(125, 97, 103, 0.7);
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.owned-product-card .used-label {
+  font-size: 1rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 4px 8px;
+  border-radius: 4px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 3;
+}
+
+.mark-used-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.mark-used-btn:hover {
+  background-color: var(--primary-hover-color);
+  transform: scale(1.05);
+}

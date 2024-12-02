@@ -58,12 +58,31 @@ router.post('/buy', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  const sql = 'SELECT * FROM purchases WHERE user_id = ?';
+  const sql = `
+      SELECT purchases.id AS purchase_id, purchases.purchased_at, purchases.is_used, rewards.id AS reward_id, rewards.name, rewards.description, rewards.value, rewards.image
+      FROM purchases
+      INNER JOIN rewards ON purchases.reward_id = rewards.id
+      WHERE purchases.user_id = ?
+    `;
+
   db.all(sql, id, (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
     res.json(rows);
+  });
+});
+
+router.patch('/:id/use', (req, res) => {
+  const { id } = req.params;
+  const sql = `UPDATE purchases SET is_used = 1 WHERE id = ?`;
+
+  db.run(sql, [id], function (err) {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    res.json({ success: true, message: 'Reward marked as used.' });
   });
 });
 
