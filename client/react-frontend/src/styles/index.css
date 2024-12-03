@@ -132,6 +132,7 @@ p {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  position: relative;
 }
 
 .task-content h1 {
@@ -610,3 +611,17 @@ input {
   background-color: var(--primary-hover-color);
   transform: scale(1.05);
 }
+
+.sort-container {
+  position: absolute;
+  top: 13rem;
+  right: 10rem;
+}
+
+.sort-dropdown {
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
