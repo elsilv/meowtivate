@@ -56,10 +56,28 @@ const Rewards = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    axios.post(`${process.env.REACT_APP_API_URL}/api/rewards`, { ...newReward, user_id: userId })
+    const formData = new FormData();
+    formData.append("name", newReward.name);
+    formData.append("description", newReward.description);
+    formData.append("value", newReward.value);
+
+    if (newReward.image) {
+      formData.append('image', newReward.image);
+    }
+
+    axios.post(`${process.env.REACT_APP_API_URL}/api/rewards`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    })
       .then(() => {
         fetchRewards();
         setNewReward({ name: '', description: '', image: '', value: '0' });
+
+        const fileInput = document.querySelector('input[name="image"]');
+        if (fileInput) {
+          fileInput.value = '';
+        }
       })
       .catch(error => {
         console.error('There was an error adding the new reward!', error);
@@ -112,11 +130,10 @@ const Rewards = () => {
               <label className="input-group">
                 <AiOutlinePicture className="input-icon" />
                 <input
-                  type="text"
+                  type="file"
                   name="image"
-                  placeholder="Image URL"
-                  value={newReward.image}
-                  onChange={handleInputChange}
+                  onChange={(e) => setNewReward({ ...newReward, image: e.target.files[0] })}
+                  required
                 />
               </label>
 

@@ -8,7 +8,7 @@ const ProductCard = ({ product, addToCart }) => {
     return (
       <div className="product-card">
       {product.image && (
-        <img src={`/images/${product.image}`} alt={product.name} className="product-image" />
+        <img src={`${process.env.REACT_APP_API_URL}/${product.image}`} alt={product.name} className="product-image" />
       )}
         <div className="product-info">
           <h2 className="product-name">{product.name}</h2>

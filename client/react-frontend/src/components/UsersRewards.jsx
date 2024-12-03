@@ -91,7 +91,7 @@ const UsersRewards = () => {
           <div className={`owned-product-card ${reward.is_used ? 'used' : ''}`}>
             {reward.is_used === 1 && <div className="used-overlay"></div>}
             {reward.image && (
-              <img src={`/images/${reward.image}`} alt={reward.name} className="product-image" />
+              <img src={`${process.env.REACT_APP_API_URL}/${reward.image}`} alt={reward.name} className="product-image" />
             )}
             <div className="product-info">
               <h2 className="product-name">{reward.name}</h2>

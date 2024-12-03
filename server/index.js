@@ -18,6 +18,8 @@ app.use('/api/tasks', taskRoutes);
 app.use('/api/rewards', rewardRoutes);
 app.use('/api/purchases', purchaseRoutes);
 
+app.use('/uploads', express.static('uploads'));
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
 });
