@@ -124,7 +124,6 @@ const Tasks = () => {
             <th>Task</th>
             <th>Status</th>
             <th>Value</th>
-            <th>More Info</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -134,7 +133,6 @@ const Tasks = () => {
               <td data-label="Task">{task.name}</td>
               <td data-label="Status">{getStatusText(task.status)}</td>
               <td data-label="Value">{task.value} <FaHeart size={12} color="#FAD8D6" /></td>
-              <td data-label="More Info">Details</td>
               <td data-label="Remove task">
                 <button className='task-change-status-btn tooltip'  onClick={() => handleRemoveTask(task.id)}>
                   <FiTrash2 />
