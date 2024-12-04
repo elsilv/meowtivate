@@ -133,7 +133,6 @@ const Rewards = () => {
                   type="file"
                   name="image"
                   onChange={(e) => setNewReward({ ...newReward, image: e.target.files[0] })}
-                  required
                 />
               </label>
 
