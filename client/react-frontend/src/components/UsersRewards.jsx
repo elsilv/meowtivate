@@ -4,6 +4,7 @@ import '../styles/index.css';
 import axios from 'axios';
 import { FaHeart } from 'react-icons/fa';
 import { useMeowtivate } from '../context/MeowtivateContext';
+import { handleSortChange, sortItems } from '../utils/sortUtils';
 
 const UsersRewards = () => {
   const { state: { userId } } = useMeowtivate();
@@ -19,7 +20,7 @@ const UsersRewards = () => {
   const fetchPurchases = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/api/purchases/${userId}`)
       .then(response => {
-        const sortedData = sortRewards(response.data, 'unused');
+        const sortedData = sortItems(response.data, 'unused');
         setPurchases(sortedData);
         setPurchases(response.data);
       })
@@ -44,29 +45,6 @@ const UsersRewards = () => {
       });
   };
 
-  const sortRewards = (data, option) => {
-    switch (option) {
-      case 'unused':
-        return data.sort((a, b) => a.is_used - b.is_used);
-      case 'valueHighToLow':
-        return data.sort((a, b) => b.value - a.value);
-      case 'valueLowToHigh':
-        return data.sort((a, b) => a.value - b.value);
-      case 'recent':
-        return data.sort((a, b) => new Date(b.purchased_at) - new Date(a.purchased_at));
-      case 'oldest':
-        return data.sort((a, b) => new Date(a.purchased_at) - new Date(b.purchased_at));
-      default:
-        return data;
-    }
-  };
-
-  const handleSortChange = (e) => {
-    const selectedOption = e.target.value;
-    setSortOption(selectedOption);
-    setPurchases(prev => sortRewards([...prev], selectedOption));
-  };
-
   return (
     <div className='task-content'>
       <h1>My Rewards</h1>
@@ -75,7 +53,7 @@ const UsersRewards = () => {
       <div className="sort-container">
         <select
           value={sortOption  || 'unused'}
-          onChange={handleSortChange}
+          onChange={(e) => handleSortChange(e.target.value, setSortOption, setPurchases, purchases)}
           className="sort-dropdown"
         >
           <option value="unused">Unused First</option>
