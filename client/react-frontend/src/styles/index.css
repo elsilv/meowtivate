@@ -95,6 +95,7 @@ body {
   transform: translateY(-3px);
   box-shadow: 0 8px 16px var(--button-hover-shadow-color);
 }
+
 /* Hero Section Styles */
 .hero {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./images/catheader.jpg');
@@ -290,8 +291,8 @@ tr:nth-child(even) {
   align-items: center;
   justify-content: center;
   width: 200px;
-  height: 350px;
-  padding: 100px;
+  height: 400px;
+  padding: 70px;
   border: 1px solid #ddd;
   border-radius: 10px;
   text-align: center;
@@ -304,13 +305,34 @@ tr:nth-child(even) {
   box-shadow: 0 2px 8px rgba(125, 97, 103, 0.8);
 }
 
+.product-info {
+  flex-grow: 2;
+}
+
 .product-image {
   width: 150px;
   height: 150px;
+  overflow: hidden;
   object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   box-shadow: 0 2px 8px rgba(125, 97, 103, 0.8);
+}
+
+.owned-product-image {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(125, 97, 103, 0.8);
+}
+
+.no-image {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
 }
 
 .product-title {
@@ -565,14 +587,14 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 220px;
-  padding: 100px;
-  background-color: white;
-  border-radius: 8px;
+  justify-content: space-between;
+  width: 150px;
+  padding: 20px;
   margin: 10px;
-  transition: transform 0.3s ease;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  background-color: var(--main-bg-color);
 }
 
 .owned-product-card:hover {
@@ -603,15 +625,15 @@ input {
 }
 
 .mark-used-btn {
+  margin-top: auto;
   background-color: var(--primary-color);
   color: white;
+  padding: var(--button-padding);
   border: none;
-  border-radius: 8px;
-  padding: 10px 15px;
-  font-size: 14px;
-  font-weight: bold;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(125, 97, 103, 0.2);
 }
 
 .mark-used-btn:hover {

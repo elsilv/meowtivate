@@ -65,9 +65,15 @@ const UsersRewards = () => {
         {purchases.map((reward) => (
           <div className={`owned-product-card ${reward.is_used ? 'used' : ''}`}>
             {reward.is_used === 1 && <div className="used-overlay"></div>}
-            {reward.image && (
-              <img src={`${process.env.REACT_APP_API_URL}/${reward.image}`} alt={reward.name} className="product-image" />
-            )}
+            {reward.image ? (
+                <img
+                  src={`${process.env.REACT_APP_API_URL}/${reward.image}`}
+                  alt={reward.name}
+                  className="owned-product-image"
+                />
+              ) : (
+                <div className="no-image"></div>
+              )}
             <div className="product-info">
               <h2 className="product-name">{reward.name}</h2>
               <p className="product-description">{reward.description}</p>
