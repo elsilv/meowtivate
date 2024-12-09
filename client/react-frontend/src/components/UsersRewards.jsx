@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import useBalance from './useBalance';
 import '../styles/index.css';
 import axios from 'axios';
 import { FaHeart } from 'react-icons/fa';
@@ -48,7 +47,7 @@ const UsersRewards = () => {
     <div className='task-content'>
       <h1>My Rewards</h1>
 
-      <div className="sort-container">
+      <div>
         <select
           value={sortOption  || 'unused'}
           onChange={(e) => handleSortChange(e.target.value, setSortOption, setPurchases, purchases)}

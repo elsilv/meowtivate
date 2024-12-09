@@ -95,7 +95,6 @@ body {
   transform: translateY(-3px);
   box-shadow: 0 8px 16px var(--button-hover-shadow-color);
 }
-
 /* Hero Section Styles */
 .hero {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./images/catheader.jpg');
@@ -618,10 +617,6 @@ input {
 .mark-used-btn:hover {
   background-color: var(--primary-hover-color);
   transform: scale(1.05);
-}
-
-.sort-container {
-  padding: 5px;
 }
 
 .sort-dropdown {
