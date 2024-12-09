@@ -8,7 +8,6 @@ import { handleSortChange, sortItems } from '../utils/sortUtils';
 
 const UsersRewards = () => {
   const { state: { userId } } = useMeowtivate();
-  const balance = useBalance();
 
   const [purchases, setPurchases] = useState([]);
   const [sortOption, setSortOption] = useState('unused');
@@ -48,7 +47,6 @@ const UsersRewards = () => {
   return (
     <div className='task-content'>
       <h1>My Rewards</h1>
-      <h2>Balance: {balance}</h2>
 
       <div className="sort-container">
         <select

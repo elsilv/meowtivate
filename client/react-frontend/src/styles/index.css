@@ -73,6 +73,13 @@ body {
   text-decoration: underline;
 }
 
+.navbar-balance {
+  font-size: 18px;
+  border-radius: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 .btn {
   background-color: var(--primary-color);
   padding: var(--button-padding);
@@ -88,6 +95,7 @@ body {
   transform: translateY(-3px);
   box-shadow: 0 8px 16px var(--button-hover-shadow-color);
 }
+
 /* Hero Section Styles */
 .hero {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./images/catheader.jpg');
@@ -613,9 +621,7 @@ input {
 }
 
 .sort-container {
-  position: absolute;
-  top: 13rem;
-  right: 10rem;
+  padding: 5px;
 }
 
 .sort-dropdown {
