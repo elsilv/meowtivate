@@ -6,6 +6,7 @@
   --button-padding: 10px 15px;
   --box-shadow-color: rgba(0, 0, 0, 0.2);
   --button-hover-shadow-color: rgba(0, 0, 0, 0.3);
+  --border-radius: 10px;
 }
 
 body {
@@ -83,7 +84,7 @@ body {
 .btn {
   background-color: var(--primary-color);
   padding: var(--button-padding);
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   color: white;
   text-decoration: none;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
@@ -163,7 +164,7 @@ p {
 .task-content input,
 select {
   color: var(--text-color);
-  border-radius: .4rem;
+  border-radius: var(--border-radius);
   box-shadow: 0 .4rem .4rem #ddd;
   padding: 10px;
   text-align: left;
@@ -207,7 +208,7 @@ table {
   border-collapse: separate;
   border-spacing: 0;
   border: 5px solid transparent;
-  border-radius: .8rem;
+  border-radius: var(--border-radius);
   margin: 20px 0;
   background-color: var(--primary-color);
   padding: 10px;
@@ -294,7 +295,7 @@ tr:nth-child(even) {
   height: 400px;
   padding: 70px;
   border: 1px solid #ddd;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   text-align: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin: 20px;
@@ -359,7 +360,7 @@ tr:nth-child(even) {
   border: none;
   padding: var(--button-padding);
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   margin-top: 10px;
   transition: background-color 0.3s ease;
   width: 100%;
@@ -383,7 +384,7 @@ tr:nth-child(even) {
   margin-top: 20px;
   background-color: #f9f9f9;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   box-shadow: 0 4px 8px var(--box-shadow-color);
 }
 
@@ -405,7 +406,7 @@ tr:nth-child(even) {
   padding-left: 35px;
   width: 100%;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   box-sizing: border-box;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
@@ -433,7 +434,7 @@ tr:nth-child(even) {
   border: none;
   padding: var(--button-padding);
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 2px 8px rgba(125, 97, 103, 0.2);
   width: 100%;
@@ -448,7 +449,7 @@ tr:nth-child(even) {
 .show-reward-form-btn {
   background-color: var(--primary-color);
   padding: var(--button-padding);
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   border: none;
   color: white;
   text-decoration: none;
@@ -475,7 +476,7 @@ tr:nth-child(even) {
 .modal-content {
   background: white;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   text-align: center;
 }
 
@@ -490,7 +491,7 @@ tr:nth-child(even) {
 .signup-card {
   background-color: var(--main-bg-color);
   border: 1px solid #ddd;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   padding: 30px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   width: 400px;
@@ -529,7 +530,7 @@ input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   font-size: 16px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
@@ -542,7 +543,7 @@ input {
   border: none;
   padding: var(--button-padding);
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   margin-top: 10px;
   transition: background-color 0.3s ease;
   width: 100%;
@@ -565,7 +566,7 @@ input {
   background-color: var(--main-bg-color);
   color: var(--text-color);
   text-align: center;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   padding: 5px;
   position: absolute;
   z-index: 1;
@@ -592,7 +593,7 @@ input {
   padding: 20px;
   margin: 10px;
   border: 1px solid #ddd;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   text-align: center;
   background-color: var(--main-bg-color);
 }
@@ -608,7 +609,7 @@ input {
   right: 0;
   bottom: 0;
   background-color: rgba(125, 97, 103, 0.7);
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   z-index: 1;
 }
 
@@ -617,7 +618,7 @@ input {
   color: white;
   background-color: rgba(0, 0, 0, 0.7);
   padding: 4px 8px;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   position: absolute;
   top: 8px;
   right: 8px;
@@ -630,7 +631,7 @@ input {
   color: white;
   padding: var(--button-padding);
   border: none;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   text-decoration: none;
   box-shadow: 0 2px 8px rgba(125, 97, 103, 0.2);
@@ -644,7 +645,7 @@ input {
 .sort-dropdown {
   padding: 5px;
   border: 1px solid black;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   cursor: pointer;
 }
 
