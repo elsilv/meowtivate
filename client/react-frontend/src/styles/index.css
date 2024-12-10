@@ -235,6 +235,10 @@ th {
   background-color: #f4f4f4;
 }
 
+th:hover {
+  cursor: pointer;
+}
+
 tr:nth-child(even) {
   background-color: #f9f9f9;
 }

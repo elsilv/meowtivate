@@ -5,10 +5,10 @@ import { FiTrash2, FiPlus, FiCheck } from 'react-icons/fi';
 import { FaHeart } from 'react-icons/fa';
 import { useMeowtivate } from '../context/MeowtivateContext';
 
-
 const Tasks = () => {
   const { state: { userId, tasks }, dispatch, fetchTasks } = useMeowtivate();
   const [newTask, setNewTask] = useState({ name: '', status: '0', value: '' });
+  const [sortConfig, setSortConfig] = useState({ key: '', direction: 'asc' });
 
   useEffect(() => {
     fetchTasks(userId);
@@ -67,20 +67,35 @@ const Tasks = () => {
 
   const getStatusText = (status) => {
     switch (String(status)) {
-      case '0':
-        return 'To do';
-      case '1':
-        return 'Pending';
-      case '2':
-        return 'Done';
-      default:
-        return 'Unknown';
+      case '0': return 'To do';
+      case '1': return 'Pending';
+      case '2': return 'Done';
+      default: return 'Unknown';
     }
   };
 
-  if (!userId) {
-    return <div>Something went wrong!</div>;
-  }
+  const handleSort = (key) => {
+    let direction = 'asc';
+    if (sortConfig.key === key && sortConfig.direction === 'asc') {
+      direction = 'desc';
+    }
+    setSortConfig({ key, direction });
+  };
+
+  const sortedTasks = [...tasks].sort((a, b) => {
+    if (sortConfig.key) {
+      const aValue = a[sortConfig.key];
+      const bValue = b[sortConfig.key];
+
+      if (aValue < bValue) {
+        return sortConfig.direction === 'asc' ? -1 : 1;
+      }
+      if (aValue > bValue) {
+        return sortConfig.direction === 'asc' ? 1 : -1;
+      }
+    }
+    return 0;
+  });
 
   return (
     <div className='task-content'>
@@ -121,30 +136,30 @@ const Tasks = () => {
       <table>
         <thead>
           <tr>
-            <th>Task</th>
-            <th>Status</th>
-            <th>Value</th>
+            <th onClick={() => handleSort('name')}>Task</th>
+            <th onClick={() => handleSort('status')}>Status</th>
+            <th onClick={() => handleSort('value')}>Value</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {tasks.map(task => (
+          {sortedTasks.map(task => (
             <tr key={task.id}>
               <td data-label="Task">{task.name}</td>
               <td data-label="Status">{getStatusText(task.status)}</td>
               <td data-label="Value">{task.value} <FaHeart size={12} color="#FAD8D6" /></td>
-              <td data-label="Remove task">
-                <button className='task-change-status-btn tooltip'  onClick={() => handleRemoveTask(task.id)}>
+              <td data-label="Actions">
+                <button className='task-change-status-btn tooltip' onClick={() => handleRemoveTask(task.id)}>
                   <FiTrash2 />
                   <span className="tooltiptext">Remove task</span>
                 </button>
-                <button  className='task-change-status-btn tooltip' onClick={() => handleMarkAsDone(task.id)}>
+                <button className='task-change-status-btn tooltip' onClick={() => handleMarkAsDone(task.id, task.value)}>
                   <FiCheck />
                   <span className="tooltiptext">Mark task as done</span>
                 </button>
               </td>
             </tr>
-          ))}  
+          ))}
         </tbody>
       </table>
     </div>
