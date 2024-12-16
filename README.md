@@ -1,6 +1,8 @@
 # 🐾 Meowtivate: Get Stuff Done with a Purr-pose! 🐾
 Welcome to Meowtivate! This is a productivity and reward app designed to help users stay motivated by completing tasks, earning "fake money," and redeeming rewards in a playful, cat-themed environment.
 
+**🌐 Live Site:** [https://www.meowtivate.fi](https://www.meowtivate.fi)
+
 # Features
 🌟 Task Mastery: Add tasks, check them off, and watch your balance grow with each success.
 
