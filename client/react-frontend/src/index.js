@@ -20,8 +20,8 @@ root.render(
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/api/tasks" element={<TaskPage />} />
-          <Route path="/api/rewards" element={<RewardPage />} />
+          <Route path="/tasks" element={<TaskPage />} />
+          <Route path="/rewards" element={<RewardPage />} />
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/myrewards" element={<MyRewardsPage />} />
         </Routes>

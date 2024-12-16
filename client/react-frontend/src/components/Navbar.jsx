@@ -14,8 +14,8 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-brand"><Link to="/">Meowtivate</Link></div>
       <ul className="navbar-links">
-        <li><Link to="/api/tasks">Tasks</Link></li>
-        <li><Link to="/api/rewards">Reward shop</Link></li>
+        <li><Link to="/tasks">Tasks</Link></li>
+        <li><Link to="/rewards">Reward shop</Link></li>
 
         {isLoggedIn ? (
             <>

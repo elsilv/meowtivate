@@ -29,7 +29,6 @@ const GoogleLogin = () => {
   // Handle the Google Sign-In response
   const handleCredentialResponse = (response) => {
     const token = response.credential;
-    console.log("Encoded JWT ID token: " + token);
   
     const userInfo = jwtDecode(token);
 
@@ -53,7 +52,7 @@ const GoogleLogin = () => {
           localStorage.setItem('user_id', id);
           localStorage.setItem('google_token', token);
           localStorage.setItem('isLoggedIn', 'true');
-          window.location.href = '/api/tasks';
+          window.location.href = '/tasks';
         }
       })
       .catch((error) => console.error('Error:', error));
