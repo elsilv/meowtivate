@@ -36,7 +36,9 @@ const Rewards = () => {
   }, []);
 
   const fetchRewards = () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/rewards`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/rewards`, {
+        params: { user_id: userId }
+      })
       .then(response => {
         setRewards(response.data);
       })
@@ -57,6 +59,7 @@ const Rewards = () => {
     e.preventDefault();
 
     const formData = new FormData();
+    formData.append("user_id", userId)
     formData.append("name", newReward.name);
     formData.append("description", newReward.description);
     formData.append("value", newReward.value);

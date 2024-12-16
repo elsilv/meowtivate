@@ -29,11 +29,11 @@ const upload = multer({
 });
 
 router.post('/', upload.single('image'), (req, res) => {
-  const { name, description, value } = req.body;
+  const { user_id, name, description, value } = req.body;
   const image = req.file ? req.file.path : '';
 
-  const sql = 'INSERT INTO rewards (name, description, value, image) VALUES (?, ?, ?, ?)';
-  db.run(sql, [name, description, value, image], function (err) {
+  const sql = 'INSERT INTO rewards (user_id, name, description, value, image) VALUES (?, ?, ?, ?, ?)';
+  db.run(sql, [user_id, name, description, value, image], function (err) {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -42,8 +42,9 @@ router.post('/', upload.single('image'), (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  const sql = 'SELECT * FROM rewards';
-  db.all(sql, [], (err, rows) => {
+  const { user_id } = req.query;
+  const sql = 'SELECT * FROM rewards WHERE user_id = ?';
+  db.all(sql, [user_id], (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
