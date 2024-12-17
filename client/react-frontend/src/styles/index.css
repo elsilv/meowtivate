@@ -280,7 +280,6 @@ tr:nth-child(even) {
   min-height: 100vh;
   background: linear-gradient(135deg, #ffffff, #f0f0f0 50%, #ffffff);
   background-size: 400% 400%;
-  animation: shine 10s ease-in-out infinite;
 }
 
 @keyframes shine {
