@@ -93,7 +93,7 @@ const Rewards = () => {
 
   return (
     <div className='task-content'>
-      <h1>Palkintokauppa</h1>
+      <h1>Reward shop</h1>
       <div className="product-grid">
         {rewards.map(reward => (
           <ProductCard key={reward.id} product={reward} addToCart={addToCart} />
