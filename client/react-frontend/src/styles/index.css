@@ -272,7 +272,6 @@ table {
   box-sizing: border-box;
   backdrop-filter: blur(7px);
   box-shadow: 0 .4rem .8rem #0005;
-  overflow-x: auto;
 }
 
 th, td {
@@ -295,7 +294,11 @@ tr:nth-child(even) {
 }
 
 /* Responsive Table */
-@media (max-width: 600px) {
+@media (max-width: 600px){
+  table {
+    width: 100%;
+  }
+
   table, thead, tbody, th, td, tr {
     display: block;
   }
@@ -322,6 +325,10 @@ tr:nth-child(even) {
     padding-right: 10px;
     white-space: nowrap;
     text-align: left;
+  }
+
+  .form-container {
+    width: 100%;
   }
 }
 
