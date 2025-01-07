@@ -24,11 +24,11 @@ const Navbar = () => {
         <span className="hamburger-line"></span>
       </button>
       <ul className={`navbar-links ${isOpen ? 'open' : ''}`}>
-        <li><Link to="/tasks" onClick={() => setIsOpen(false)}>Tasks</Link></li>
-        <li><Link to="/rewards" onClick={() => setIsOpen(false)}>Reward shop</Link></li>
 
         {isLoggedIn ? (
           <>
+            <li><Link to="/tasks" onClick={() => setIsOpen(false)}>Tasks</Link></li>
+            <li><Link to="/rewards" onClick={() => setIsOpen(false)}>Reward shop</Link></li>
             <li><Link to="/myrewards" onClick={() => setIsOpen(false)}>My rewards</Link></li>
             <li className="navbar-balance">{balance} <FaHeart size={12} color="#FFA9A3" /></li>
             <li>
