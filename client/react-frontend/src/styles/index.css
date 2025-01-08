@@ -719,3 +719,84 @@ input {
   cursor: pointer;
 }
 
+/* Introduction Section */
+.introduction-section {
+  background: linear-gradient(135deg, #ffffff, #f0f0f0 50%, #ffffff);
+  padding: 4rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+}
+
+.introduction-section h2 {
+  font-size: 1.8rem;
+  color: var(--text-color);
+}
+
+.introduction-section p {
+  font-size: 1.3rem;
+  color: var(--text-color);
+  max-width: 80%;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.features-section {
+  padding: 4rem;
+  background-color: var(--primary-color);
+  box-shadow: 0 4px 8px var(--box-shadow-color);
+  text-align: center;
+}
+
+.features-section h2 {
+  font-size: 1.8rem;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.step {
+  flex: 1;
+  background-color: var(--main-bg-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  max-width: 300px;
+  margin: 0 auto;
+  box-shadow: 10px 10px 10px var(--primary-hover-color);
+}
+
+.step:hover {
+  cursor: pointer;
+}
+
+.step h3 {
+  font-size: 2rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.step p {
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+.cta-section {
+  text-align: center;
+  margin: 2rem;
+}
+
+@media (max-width: 600px){
+  .introduction-section {
+    padding: 6rem 1rem;
+  }
+
+  .features-section {
+    padding: 6rem 1rem;
+  }
+}
