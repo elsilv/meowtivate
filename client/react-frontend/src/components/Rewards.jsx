@@ -5,9 +5,11 @@ import { AiOutlinePicture, AiOutlineTag, AiOutlineEdit } from "react-icons/ai";
 import { FaHeart } from 'react-icons/fa';
 import ProductCard from './ProductCard';
 import { useMeowtivate } from '../context/MeowtivateContext';
+import { useNotification } from "../context/NotificationContext";
 
 const Rewards = () => {
   const { state: { userId }, handleBuyReward } = useMeowtivate();
+  const { showNotification } = useNotification();
 
   const [rewards, setRewards] = useState([]);
   const [newReward, setNewReward] = useState({ name: '', description: '', image: '', value: '0' });
@@ -81,9 +83,11 @@ const Rewards = () => {
         if (fileInput) {
           fileInput.value = '';
         }
+        showNotification('Yay! A new reward is in your paws, ready for you to buy. Patience, kitty, and it\'ll be yours!', 'success');
       })
       .catch(error => {
         console.error('There was an error adding the new reward!', error);
+        showNotification('There was an error adding the new reward!', 'error');
       });
   };
 

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import axios from 'axios';
+import { useNotification } from "./NotificationContext";
 
 const initialState = {
   isLoggedIn: false,
@@ -47,6 +48,7 @@ const MeowtivateContext = createContext();
 
 export function MeowtivateProvider({ children }) {
   const [state, dispatch] = useReducer(meowtivateReducer, initialState);
+  const { showNotification } = useNotification();
 
   useEffect(() => {
     const token = localStorage.getItem('google_token');
@@ -100,9 +102,11 @@ export function MeowtivateProvider({ children }) {
       .then(response => {
         console.log('Purchase successful:', response.data);
         dispatch({ type: 'UPDATE_BALANCE', payload: response.data.newBalance });
+        showNotification('Well done, kitty! Your reward is yours to enjoy!', 'success');
       })
       .catch(error => {
         console.error('Error purchasing reward:', error.response?.data?.error || error.message);
+        showNotification('Meow! Something went wrong. Please try again.', 'error');
       });
   };
 

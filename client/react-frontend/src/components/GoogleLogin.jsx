@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
+import { useNotification } from "../context/NotificationContext";
 
 const GoogleLogin = () => {
+  const { showNotification } = useNotification();
 
   useEffect(() => {
     const existingScript = document.getElementById('google-login-script');
@@ -54,8 +56,13 @@ const GoogleLogin = () => {
           localStorage.setItem('isLoggedIn', 'true');
           window.location.href = '/tasks';
         }
+        showNotification('Yay! 😸 You\'ve logged in! Time to start your purrfect day, kitty! ⭐', 'success');
       })
-      .catch((error) => console.error('Error:', error));
+      .catch((error) => {
+          console.error('Error:', error)
+          showNotification('Oops! 😿 The login didn’t work. Please check your credentials and give it another try', 'error');
+        }
+      );
   };
 
   const initializeGoogleSignIn = () => {

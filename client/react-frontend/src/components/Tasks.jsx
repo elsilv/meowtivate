@@ -4,11 +4,13 @@ import '../styles/index.css';
 import { FiTrash2, FiPlus, FiCheck } from 'react-icons/fi';
 import { FaHeart } from 'react-icons/fa';
 import { useMeowtivate } from '../context/MeowtivateContext';
+import { useNotification } from '../context/NotificationContext';
 
 const Tasks = () => {
   const { state: { userId, tasks }, dispatch, fetchTasks } = useMeowtivate();
   const [newTask, setNewTask] = useState({ name: '', status: '0', value: '' });
   const [sortConfig, setSortConfig] = useState({ key: '', direction: 'asc' });
+  const { showNotification } = useNotification();
 
   useEffect(() => {
     fetchTasks(userId);
@@ -32,9 +34,11 @@ const Tasks = () => {
           payload: response.data,
         });
         setNewTask({ name: '', status: '0', value: '' });
+        showNotification('Purrfect! Your new task has been added to the list! 🎉', 'success');
       })
       .catch(error => {
         console.error('There was an error creating the task!', error);
+        showNotification('Oops! There was an error adding your task. Let’s give it another try! 🐱💔 ', 'error');
       });
   };
 
@@ -45,9 +49,11 @@ const Tasks = () => {
           type: 'SET_TASKS',
           payload: tasks.filter(task => task.id !== taskId),
         });
+        showNotification('Task removed successfully!', 'success');
       })
       .catch(error => {
         console.error('There was an error removing the task!', error);
+        showNotification('Oh no, there was an error removing task. Please try again.', 'error');
       });
   };
 
@@ -59,9 +65,11 @@ const Tasks = () => {
           payload: taskId,
           rewardValue: rewardValue,
         });
+        showNotification('Meow-gical! ⭐ Your task has been marked as completed, great job! 🎉', 'success');
       })
       .catch(error => {
         console.error('Error marking task as done:', error);
+        showNotification('Oh no, looks like we couldn’t mark your task as done. Try again, kitty! 🐱💔', 'success');
       });
   };
 

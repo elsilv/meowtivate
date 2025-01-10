@@ -4,9 +4,11 @@ import axios from 'axios';
 import { FaHeart } from 'react-icons/fa';
 import { useMeowtivate } from '../context/MeowtivateContext';
 import { handleSortChange, sortItems } from '../utils/sortUtils';
+import { useNotification } from "../context/NotificationContext";
 
 const UsersRewards = () => {
   const { state: { userId } } = useMeowtivate();
+  const { showNotification } = useNotification();
 
   const [purchases, setPurchases] = useState([]);
   const [sortOption, setSortOption] = useState('unused');
@@ -37,9 +39,11 @@ const UsersRewards = () => {
               : reward
           )
         );
+        showNotification('Purrfect! Your reward has been marked as used. Enjoy it, kitty! ❤️', 'success');
       })
       .catch(error => {
-        console.error('There was an error marking the reward as used!', error);
+        console.error('Whoops! Something went wrong when marking your reward as used.', error);
+        showNotification('Whoops! Something went wrong when marking your reward as used. Try again, kitty!', 'error');
       });
   };
 
