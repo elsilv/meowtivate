@@ -30,7 +30,7 @@ db.serialize(() => {
       user_id INTEGER,
       name TEXT NOT NULL,
       status INTEGER,
-      value INTEGER CHECK (value <= 100),
+      value INTEGER CHECK (value <= 99999),
       FOREIGN KEY (user_id) REFERENCES users(id)
     )
   `);
