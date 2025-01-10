@@ -146,6 +146,7 @@ body {
   text-decoration: none;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 4px 8px var(--box-shadow-color);
+  font-size: 1.1rem;
 }
 
 .btn:hover {
@@ -168,7 +169,7 @@ body {
 }
 
 .hero-content {
-  max-width: 600px;
+  max-width: 100%;
 }
 
 h1 {
@@ -177,7 +178,7 @@ h1 {
 }
 
 p {
-  font-size: 20px;
+  font-size: 1.3rem;
 }
 
 /* Footer Styles */
@@ -186,6 +187,10 @@ p {
   color: var(--text-color);
   text-align: center;
   position: relative;
+}
+
+.footer p {
+  font-size: 15px;
 }
 
 /* Task page styles */
@@ -722,17 +727,20 @@ input {
 /* Introduction Section */
 .introduction-section {
   background: linear-gradient(135deg, #ffffff, #f0f0f0 50%, #ffffff);
-  padding: 4rem;
+  padding: 6rem;
   border-radius: var(--border-radius);
-  text-align: center;
+  hyphens: auto;
 }
 
 .introduction-section h2 {
+  margin: 5px;
   font-size: 1.8rem;
   color: var(--text-color);
+  text-align: center;
 }
 
 .introduction-section p {
+  text-align: center;
   font-size: 1.3rem;
   color: var(--text-color);
   max-width: 80%;
@@ -751,6 +759,7 @@ input {
   font-size: 1.8rem;
   color: var(--text-color);
   margin-bottom: 2rem;
+  margin-top: 0;
 }
 
 .steps {
@@ -762,7 +771,7 @@ input {
 
 .step {
   flex: 1;
-  background-color: var(--main-bg-color);
+  background: linear-gradient(135deg, #ffffff, #f0f0f0 50%, #ffffff);
   padding: 1.5rem;
   border-radius: var(--border-radius);
   text-align: center;
@@ -776,7 +785,7 @@ input {
 }
 
 .step h3 {
-  font-size: 2rem;
+  font-size: 1.3rem;
   color: var(--text-color);
   margin-bottom: 1rem;
 }
@@ -788,12 +797,25 @@ input {
 
 .cta-section {
   text-align: center;
-  margin: 2rem;
+  margin: 4rem;
 }
+
+.cta-section h2{
+  font-size: 1.3rem;
+}
+
 
 @media (max-width: 600px){
   .introduction-section {
     padding: 6rem 1rem;
+  }
+
+  .introduction-section h2 {
+    margin: 20px;
+  }
+
+  .introduction-section p {
+    text-align: justify;
   }
 
   .features-section {
