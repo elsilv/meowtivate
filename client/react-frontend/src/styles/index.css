@@ -184,13 +184,26 @@ p {
 /* Footer Styles */
 .footer {
   background-color: var(--main-bg-color);
-  color: var(--text-color);
   text-align: center;
   position: relative;
 }
 
 .footer p {
   font-size: 15px;
+  padding: 0;
+  margin: 5px;
+}
+
+.footer a {
+  font-size: 15px;
+  margin-left: 5px;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.footer a:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 /* Task page styles */
