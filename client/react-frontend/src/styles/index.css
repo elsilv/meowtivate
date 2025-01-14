@@ -570,6 +570,22 @@ tr:nth-child(even) {
   text-align: center;
 }
 
+.modal-btn {
+  background-color: var(--primary-color);
+  padding: var(--button-padding);
+  margin: 5px;
+  border-radius: var(--border-radius);
+  border: none;
+  color: white;
+  box-shadow: 0 4px 8px var(--box-shadow-color);
+}
+
+.modal-btn:hover {
+  cursor: pointer;
+  background-color: var(--primary-hover-color);
+  box-shadow: 0 8px 16px var(--button-hover-shadow-color);
+}
+
 /* Signin / Signup page */
 .signup-page {
   display: flex;

@@ -166,8 +166,8 @@ const Rewards = () => {
         <div className="modal">
           <div className="modal-content">
             <p>Are you sure you want to buy {selectedProduct?.name} for {selectedProduct?.value} <FaHeart size={12} color="#FAD8D6" />?</p>
-            <button className="btn" onClick={confirmPurchase}>Yes</button>
-            <button className="btn" onClick={cancelPurchase}>No</button>
+            <button className="modal-btn" onClick={confirmPurchase}>Yes</button>
+            <button className="modal-btn" onClick={cancelPurchase}>No</button>
           </div>
         </div>
       )}
