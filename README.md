@@ -3,6 +3,8 @@ Welcome to Meowtivate! This is a productivity and reward app designed to help us
 
 **🌐 Live Site:** [https://www.meowtivate.fi](https://www.meowtivate.fi)
 
+▶️ [Watch the Meowtivate introduction video](https://www.youtube.com/watch?v=FOR-epwrK3I?si=WViTK_2r31IV8RKa)
+
 # Features
 🌟 Task Mastery: Add tasks, check them off, and watch your balance grow with each success.
 
