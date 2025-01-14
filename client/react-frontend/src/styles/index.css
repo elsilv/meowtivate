@@ -8,6 +8,7 @@
   --button-hover-shadow-color: rgba(0, 0, 0, 0.3);
   --border-radius: 10px;
   --basic-font-size: 16px;
+  --landingpage-font-weight: 600;
 }
 
 * {
@@ -768,6 +769,7 @@ input {
   font-size: 1.8rem;
   color: var(--text-color);
   text-align: center;
+  font-weight: var(--landingpage-font-weight);
 }
 
 .introduction-section p {
@@ -788,6 +790,7 @@ input {
 
 .features-section h2 {
   font-size: 1.8rem;
+  font-weight: var(--landingpage-font-weight);
   color: var(--text-color);
   margin-bottom: 2rem;
   margin-top: 0;
@@ -811,12 +814,9 @@ input {
   box-shadow: 10px 10px 10px var(--primary-hover-color);
 }
 
-.step:hover {
-  cursor: pointer;
-}
-
 .step h3 {
   font-size: 1.3rem;
+  font-weight: 600;
   color: var(--text-color);
   margin-bottom: 1rem;
 }
@@ -833,6 +833,7 @@ input {
 
 .cta-section h2{
   font-size: 1.3rem;
+  font-weight: var(--landingpage-font-weight);
 }
 
 .notification {
