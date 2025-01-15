@@ -5,6 +5,7 @@ import { FiTrash2, FiPlus, FiCheck } from 'react-icons/fi';
 import { FaHeart } from 'react-icons/fa';
 import { useMeowtivate } from '../context/MeowtivateContext';
 import { useNotification } from '../context/NotificationContext';
+import { getCompliment } from '../utils/compliment';
 
 const Tasks = () => {
   const { state: { userId, tasks }, dispatch, fetchTasks } = useMeowtivate();
@@ -57,7 +58,12 @@ const Tasks = () => {
       });
   };
 
-  const handleMarkAsDone = (taskId, rewardValue) => {
+  const handleTaskCompletion = async (taskName) => {
+    const compliment = await getCompliment(taskName);
+    showNotification(`${compliment}`, 'success');
+  };
+
+  const handleMarkAsDone = (taskId, rewardValue, taskName) => {
     axios.post(`${process.env.REACT_APP_API_URL}/api/tasks/${taskId}/mark-done`, { user_id: userId })
       .then(() => {
         dispatch({
@@ -65,7 +71,14 @@ const Tasks = () => {
           payload: taskId,
           rewardValue: rewardValue,
         });
-        showNotification('Meow-gical! ⭐ Your task has been marked as completed, great job! 🎉', 'success');
+        //showNotification(`Meow-gical! ⭐ Your task: ${taskName} has been marked as completed, great job! 🎉`, 'success');
+        handleTaskCompletion(taskName)
+          .then(() => {
+              console.log("Task completion handled successfully.");
+          })
+          .catch((error) => {
+              console.error("Error handling task completion:", error);
+          });
       })
       .catch(error => {
         console.error('Error marking task as done:', error);
@@ -161,7 +174,7 @@ const Tasks = () => {
                   <FiTrash2 />
                   <span className="tooltiptext">Remove task</span>
                 </button>
-                <button className='task-change-status-btn tooltip' onClick={() => handleMarkAsDone(task.id, task.value)}>
+                <button className='task-change-status-btn tooltip' onClick={() => handleMarkAsDone(task.id, task.value, task.name)}>
                   <FiCheck />
                   <span className="tooltiptext">Mark task as done</span>
                 </button>

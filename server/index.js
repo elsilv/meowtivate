@@ -5,6 +5,7 @@ const googleAuthRoutes = require('./routes/googleAuth');
 const taskRoutes = require('./routes/tasks');
 const rewardRoutes = require('./routes/rewards');
 const purchaseRoutes = require('./routes/purchases');
+const complimentService = require('./services/complimentService');
 const app = express();
 const port = 3001;
 
@@ -17,6 +18,7 @@ app.use('/api/google-login', googleAuthRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/rewards', rewardRoutes);
 app.use('/api/purchases', purchaseRoutes);
+app.use('/api/generate-compliment', complimentService)
 
 app.use('/uploads', express.static('uploads'));
 
