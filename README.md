@@ -16,11 +16,14 @@ Welcome to Meowtivate! This is a productivity and reward app designed to help us
 
 🔒 Google Sign-In: Securely log in with Google, because even productivity deserves a little meow-gic.
 
+💬 GPT-Powered Compliments: Receive personalized compliments using a GPT model every time you complete a task, adding a bit of extra purr-sonal motivation.
+
 # Technologies
 - Frontend: React, JavaScript, and CSS
 - Backend: Node.js, Express
 - Database: SQLite
 - Authentication: Google Sign-In
+- AI: GPT Model for generating personalized compliments
 
 # How to Get Started
 1. Clone the repository and navigate to the project folder.
