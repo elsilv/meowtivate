@@ -855,6 +855,98 @@ input {
   color: #721c24;
 }
 
+.compliment-collection {
+  max-width: 600px;
+  width: 100%;
+  margin: 20px 0 50px 0;
+  padding: 20px;
+  background-color: #CECECE;
+  opacity: 80%;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px var(--box-shadow-color);
+  text-align: center;
+}
+
+.collection-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.compliment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.compliment-card {
+  padding: 15px;
+  border-radius: 8px;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.compliment-card:hover {
+  transform: scale(1.05);
+}
+
+.compliment-text {
+  font-size: 18px;
+  font-style: italic;
+  color: var(--text-color);
+}
+
+.compliment-date {
+  font-size: 14px;
+  color: #999;
+  margin-top: 10px;
+}
+
+.empty-collection {
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+}
+
+.empty-message {
+  font-size: 16px;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.pagination-btn {
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #FFF;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination-btn:hover {
+  background-color: var(--primary-hover-color);
+}
+
+.pagination-btn:disabled {
+  background-color: rgba(125, 97, 103, 0.7);
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-size: 14px;
+  color: var(--text-color);
+}
 
 @media (max-width: 600px){
   .introduction-section {
@@ -871,5 +963,9 @@ input {
 
   .features-section {
     padding: 6rem 1rem;
+  }
+
+  .compliment-collection {
+    width: 80%
   }
 }

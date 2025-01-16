@@ -29,7 +29,7 @@ const Navbar = () => {
           <>
             <li><Link to="/tasks" onClick={() => setIsOpen(false)}>Tasks</Link></li>
             <li><Link to="/rewards" onClick={() => setIsOpen(false)}>Reward shop</Link></li>
-            <li><Link to="/myrewards" onClick={() => setIsOpen(false)}>My rewards</Link></li>
+            <li><Link to="/myrewards" onClick={() => setIsOpen(false)}>My Rewards & Compliments</Link></li>
             <li className="navbar-balance">{balance} <FaHeart size={12} color="#FFA9A3" /></li>
             <li>
               <button onClick={() => { signOut(); setIsOpen(false); }}>Sign out</button>

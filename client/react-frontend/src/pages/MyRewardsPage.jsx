@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/index.css';
 import Navbar from '../components/Navbar'
 import UsersRewards from "../components/UsersRewards";
+import ComplimentCollection from "../components/ComplimentCollection";
 
 const MyRewardsPage = () => {
 
@@ -9,6 +10,7 @@ const MyRewardsPage = () => {
     <div className='shiny-background'>
       <Navbar />
       <UsersRewards />
+      <ComplimentCollection />
     </div>
   );
 };
