@@ -860,7 +860,7 @@ input {
   width: 100%;
   margin: 20px 0 50px 0;
   padding: 20px;
-  background-color: #CECECE;
+  background-color: rgba(125, 97, 103, 0.7);
   opacity: 80%;
   border-radius: var(--border-radius);
   box-shadow: 0 4px 8px var(--box-shadow-color);
