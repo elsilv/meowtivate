@@ -58,6 +58,17 @@ db.serialize(() => {
       FOREIGN KEY (reward_id) REFERENCES rewards(id)
     )
   `);
+
+  db.run(`
+    CREATE TABLE IF NOT EXISTS compliments (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER,
+      task_id INTEGER,
+      compliment_text TEXT NOT NULL,
+      FOREIGN KEY (user_id) REFERENCES users(id),
+      FOREIGN KEY (task_id) REFERENCES tasks(id)
+    )
+  `);
 });
 
 /*

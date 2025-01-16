@@ -58,8 +58,8 @@ const Tasks = () => {
       });
   };
 
-  const handleTaskCompletion = async (taskName) => {
-    const compliment = await getCompliment(taskName);
+  const handleTaskCompletion = async (userId, taskId, taskName) => {
+    const compliment = await getCompliment(userId, taskId, taskName);
     showNotification(`${compliment}`, 'success');
   };
 
@@ -72,9 +72,9 @@ const Tasks = () => {
           rewardValue: rewardValue,
         });
         //showNotification(`Meow-gical! ⭐ Your task: ${taskName} has been marked as completed, great job! 🎉`, 'success');
-        handleTaskCompletion(taskName)
+        handleTaskCompletion(userId, taskId, taskName)
           .then(() => {
-              console.log("Task completion handled successfully.");
+              console.log("Task completion handled successfully.", userId, taskId, taskName);
           })
           .catch((error) => {
               console.error("Error handling task completion:", error);
