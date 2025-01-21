@@ -15,7 +15,7 @@ const UsersRewards = () => {
 
   useEffect(() => {
     fetchPurchases();
-  }, []);
+  }, [userId]);
 
   const fetchPurchases = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/api/purchases/${userId}`)
