@@ -1,15 +1,18 @@
 import React from 'react';
 import '../styles/index.css';
 import { Link } from 'react-router-dom';
+import { useMeowtivate } from '../context/MeowtivateContext';
 
 const HeroSection = () => {
+  const { state: { isLoggedIn } } = useMeowtivate();
+
   return (
     <>
       <section className="hero">
         <div className="hero-content">
           <h1>Welcome to Meowtivate</h1>
           <p>"If at first you don’t succeed, knock everything off the table and try again."</p>
-          <Link to="/signin" className="btn">Get Started</Link>
+          <Link to={isLoggedIn ? "/tasks" : "/signin"} className="btn">Get Started</Link>
         </div>
       </section>
       <section className="introduction-section">
@@ -42,7 +45,7 @@ const HeroSection = () => {
 
       <section className="cta-section">
         <h2>Ready to Get Started?</h2>
-        <Link to="/signin" className="btn">Join in Meowtivate</Link>
+        <Link to={isLoggedIn ? "/tasks" : "/signin"} className="btn">Join in Meowtivate</Link>
       </section>
     </>
   );
