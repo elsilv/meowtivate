@@ -159,8 +159,7 @@ body {
 /* Hero Section Styles */
 .hero {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                  url('./images/catheader.webp'),
-                  url('./images/catheader.jpg');
+                  url('./images/catheader.webp');
   background-size: cover;
   background-position: center;
   color: #ffffff;
@@ -169,6 +168,28 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+/* Background image sizes */
+@media (min-width: 480px) {
+  .hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url('./images/catheader_medium.webp');
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+       url('./images/catheader_big.webp');
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url('./images/catheader.webp');
+  }
 }
 
 .hero-content {
