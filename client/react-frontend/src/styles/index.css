@@ -259,10 +259,12 @@ select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s ease;
 }
 
 .task-change-status-btn:hover {
   cursor: pointer;
+  transform: scale(1.2);
 }
 
 .form-container {
@@ -273,7 +275,7 @@ select {
 
 .form-row {
   display: grid;
-  grid-template-columns: auto 1fr 1fr auto;
+  grid-template-columns: 4fr 3fr 1fr;
   align-items: center;
   width: 100%;
   gap: 5px;

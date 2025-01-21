@@ -134,11 +134,6 @@ const Tasks = () => {
               onChange={handleInputChange}
               required
             />
-            <select name="status" value={newTask.status} onChange={handleInputChange}>
-              <option value="0">To do</option>
-              <option value="1">Pending</option>
-              <option value="2">Done</option>
-            </select>
             <input
               className="add-task-input-field"
               type="number"
@@ -146,6 +141,7 @@ const Tasks = () => {
               placeholder="Value"
               value={newTask.value}
               onChange={handleInputChange}
+              required
             />
             <button type="submit" className="task-change-status-btn">
               <FiPlus />
