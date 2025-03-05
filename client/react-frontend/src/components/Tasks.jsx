@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Lottie from 'lottie-react';
 import axios from 'axios';
 import '../styles/index.css';
 import { FiTrash2, FiPlus, FiCheck } from 'react-icons/fi';
@@ -6,12 +7,14 @@ import { FaHeart } from 'react-icons/fa';
 import { useMeowtivate } from '../context/MeowtivateContext';
 import { useNotification } from '../context/NotificationContext';
 import { getCompliment } from '../utils/compliment';
+import confettiAnimation from '../styles/images/confetti.json';
 
 const Tasks = () => {
   const { state: { userId, tasks }, dispatch, fetchTasks } = useMeowtivate();
   const [newTask, setNewTask] = useState({ name: '', status: '0', value: '' });
   const [sortConfig, setSortConfig] = useState({ key: '', direction: 'asc' });
   const { showNotification } = useNotification();
+  const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
     fetchTasks(userId);
@@ -72,6 +75,7 @@ const Tasks = () => {
           rewardValue: rewardValue,
         });
         //showNotification(`Meow-gical! ⭐ Your task: ${taskName} has been marked as completed, great job! 🎉`, 'success');
+        setShowConfetti(true);
         handleTaskCompletion(userId, taskId, taskName)
           .then(() => {
               console.log("Task completion handled successfully.", userId, taskId, taskName);
@@ -121,6 +125,16 @@ const Tasks = () => {
   return (
     <div className='task-content'>
       <h1>Tasks</h1>
+
+      {showConfetti && (
+        <div className="confetti-overlay">
+          <Lottie
+            animationData={confettiAnimation}
+            loop={false}
+            onComplete={() => setShowConfetti(false)}
+          />
+        </div>
+      )}      
     
       <div className="form-container">
         <form onSubmit={handleFormSubmit}>
