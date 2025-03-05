@@ -1,7 +1,9 @@
 import React from 'react';
+import Lottie from 'lottie-react';
 import '../styles/index.css';
 import { Link } from 'react-router-dom';
 import { useMeowtivate } from '../context/MeowtivateContext';
+import catAnimation from '../styles/images/cat-dance.json';
 
 const HeroSection = () => {
   const { state: { isLoggedIn } } = useMeowtivate();
@@ -16,6 +18,9 @@ const HeroSection = () => {
         </div>
       </section>
       <section className="introduction-section">
+        <div className="cat-container">
+            <Lottie animationData={catAnimation} loop={true} />
+        </div>
         <h2>Turn Productivity into Purr-ductivity!</h2>
         <p>Pounce on your goals and make them a reality! Meowtivate turns your tasks into a playful adventure.
           Complete your tasks, earn 'meow-money,' and shop for purrfect rewards. Plus, stay tuned for personalized compliments that will make you feel like the top cat!

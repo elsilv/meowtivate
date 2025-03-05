@@ -619,12 +619,27 @@ tr:nth-child(even) {
 }
 
 .signup-card {
+  text-align: center;
   background-color: var(--main-bg-color);
   border: 1px solid #ddd;
   border-radius: var(--border-radius);
   padding: 30px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   width: 400px;
+  margin: 20px;
+
+  h2 {
+    font-size: 25px;
+    margin: 0;
+  }
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .signup-title {
@@ -782,9 +797,14 @@ input {
 /* Introduction Section */
 .introduction-section {
   background: linear-gradient(135deg, #ffffff, #f0f0f0 50%, #ffffff);
-  padding: 6rem;
+  padding: 1rem 1rem 5rem 1rem;
   border-radius: var(--border-radius);
   hyphens: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .introduction-section h2 {
@@ -802,6 +822,14 @@ input {
   max-width: 80%;
   margin: 0 auto;
   line-height: 1.6;
+}
+
+.cat-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20vh;
+  height: 20vh;
 }
 
 .features-section {

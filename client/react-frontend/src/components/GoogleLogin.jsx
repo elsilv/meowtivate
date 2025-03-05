@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { useNotification } from "../context/NotificationContext";
+import Lottie from 'lottie-react';
+import catAnimation from '../styles/images/cat-login.json';
 
 const GoogleLogin = () => {
   const { showNotification } = useNotification();
@@ -85,8 +87,11 @@ const GoogleLogin = () => {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login with Google</h2>
+      <div className="cat-login">
+        <Lottie animationData={catAnimation} loop={true} />
+      </div>
       <div id="buttonDiv"></div>
     </div>
   );
